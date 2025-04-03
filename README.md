@@ -1,62 +1,72 @@
-# Unemployment Data Analysis
+# PP Review App
 
 ## Overview
-This project analyzes and forecasts unemployment rates using various machine learning techniques, including ARIMA models and neural networks. The dataset includes historical unemployment rates along with external economic indicators.
+This project is a sentiment analysis application for app reviews. It processes user reviews, extracts key features using Natural Language Processing (NLP) techniques, and applies machine learning models to predict ratings and sentiment polarity (positive or negative sentiment).
 
 ## Features
-- **Data Preprocessing:** Cleaning and transforming raw data from various sources.
-- **Exploratory Data Analysis (EDA):** Visualizing trends and seasonal patterns.
-- **Statistical Modeling:** ARIMA-based time series forecasting.
-- **Neural Network Prediction:** Implementing deep learning models for improved accuracy.
-- **Evaluation:** Comparing predicted results with actual unemployment rates.
+- Data preprocessing: Cleans and normalizes text data.
+- Exploratory Data Analysis (EDA): Visualizes rating distributions.
+- Bag-of-Words (BoW) feature extraction.
+- Logistic Regression models for:
+  - Multiclass rating prediction (1-5 stars).
+  - Binary sentiment classification (positive/negative).
+- Model evaluation with accuracy, confusion matrix, and classification reports.
+- Important word coefficient visualization.
+
+## Dataset
+The app uses a CSV file (`app_review.csv`) containing app reviews and their corresponding ratings. The dataset is split into training (70%) and testing (30%) sets.
 
 ## Installation
 ### Prerequisites
-- Python 3.8+
-- Virtual environment (recommended)
+Ensure you have Python installed along with the necessary libraries:
 
-### Setup
-1. Clone this repository:
-   ```sh
-   git clone https://github.com/yourusername/Unemployment-Data-Analysis.git
-   cd Unemployment-Data-Analysis
-   ```
-2. Create and activate a virtual environment:
-   ```sh
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-3. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
+```bash
+pip install pandas numpy matplotlib scikit-learn nltk
+```
+
+### Download NLTK Resources
+Run the following commands to download required NLTK stopwords:
+
+```python
+import nltk
+nltk.download('stopwords')
+nltk.download('omw-1.4')
+nltk.download('wordnet')
+```
 
 ## Usage
-To run the project, execute:
-```sh
-python main.py
-```
+1. Place your dataset in the project folder as `app_review.csv`.
+2. Run the script:
 
-For interactive visualization with **Streamlit**, use:
-```sh
-streamlit run main.py
+```bash
+python review_analysis.py
 ```
+3. Predictions will be saved as `model_predictions.csv`.
+4. The script will display:
+   - Accuracy metrics
+   - Confusion matrices
+   - Important word coefficients
 
-## File Structure
-```
-├── data/                 # Raw and processed datasets
-├── models/               # Saved machine learning models
-├── results/              # Output predictions and evaluation reports
-├── src/                  # Main project code
-│   ├── preprocessing.py  # Data cleaning scripts
-│   ├── arima_model.py    # ARIMA forecasting implementation
-│   ├── neural_net.py     # Neural network-based forecasting
-│   ├── visualization.py  # Plot and analysis functions
-│   ├── main.py           # Main script to run the project
-├── requirements.txt      # Required dependencies
-├── README.md             # Project documentation
-```
+## Model Evaluation
+The project implements two models:
+1. **Logistic Regression for rating prediction** (1 to 5 stars)
+2. **Logistic Regression for sentiment classification** (Positive vs. Negative)
+
+Metrics used:
+- Accuracy Score
+- Precision, Recall, and F1-score
+- Confusion Matrix
+- Important word coefficient visualization
+
+## Output Files
+- `model_predictions.csv`: Contains true vs. predicted ratings and sentiments.
+- `important_words_coefficients.png`: Visualization of top influential words.
+
+## Future Improvements
+- Implement advanced NLP techniques such as TF-IDF or Word Embeddings.
+- Experiment with other classifiers (e.g., Random Forest, SVM, Deep Learning models).
+- Improve handling of imbalanced datasets.
+
 ## License
-This project is licensed under the MIT License. See `LICENSE` for details.
-
+This project is open-source and available under the MIT License.
 
